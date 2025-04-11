@@ -1,7 +1,14 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"log"
+)
+
+var (
+	ErrNotImplemented = errors.New("not implemented")
+	ErrTruckNotFound  = errors.New("truck not found")
 )
 
 type Truck struct {
@@ -11,7 +18,7 @@ type Truck struct {
 // processTruck handles the loading and unloading of a truck
 func processTruck(truck Truck) error {
 	fmt.Printf("Processing Truck %s\n", truck.id)
-	return nil
+	return ErrNotImplemented
 }
 
 func main() {
@@ -25,7 +32,15 @@ func main() {
 	for _, truck := range trucks {
 		fmt.Printf("Truck %s has arrived\n", truck.id)
 		if err := processTruck(truck); err != nil {
-			fmt.Println("error")
+			if errors.Is(err, ErrNotImplemented) {
+				// we do this
+			}
+
+			if errors.Is(err, ErrTruckNotFound) {
+				// we do this
+			}
+
+			log.Fatalf("Error processing truck %s\n", err)
 		}
 	}
 }
