@@ -19,12 +19,20 @@ func (t *Truck) LoadCargo() error {
 	return ErrTruckNotFound
 }
 
+func (t *Truck) UnloadCargo() error {
+	return nil
+}
+
 // processTruck handles the loading and unloading of a truck
 func processTruck(truck Truck) error {
 	fmt.Printf("Processing Truck %s\n", truck.id)
 
 	if err := truck.LoadCargo(); err != nil {
-		return fmt.Errorf("Error truck not foind %w", err)
+		return fmt.Errorf("Error truck did not load correctly %w", err)
+	}
+
+	if err := truck.UnloadCargo(); err != nil {
+		return fmt.Errorf("Error truck did not unload correctly %w", err)
 	}
 	return ErrNotImplemented
 }
