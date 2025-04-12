@@ -26,6 +26,7 @@ func (t *Truck) UnloadCargo() error {
 // processTruck handles the loading and unloading of a truck
 // add this
 // add this again
+// one more time
 func processTruck(truck Truck) error {
 	fmt.Printf("Processing Truck %s\n", truck.id)
 
